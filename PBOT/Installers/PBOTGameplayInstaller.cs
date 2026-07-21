@@ -16,7 +16,7 @@ internal class PBOTGameplayInstaller : Installer
         Container.Bind<ScoreContract>().FromMethod(Context =>
         {
             var beatmap = Context.Container.Resolve<BeatmapKey>();
-            var mode = beatmap.beatmapCharacteristic.serializedName;
+            var mode = beatmap.characteristic.SerializedName();
             var level = beatmap.levelId.Replace("custom_level_", string.Empty);
             var diff = beatmap.difficulty;
 

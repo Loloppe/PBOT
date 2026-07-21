@@ -26,12 +26,12 @@ internal class DeltaFrameSavingManager : IInitializable, IDisposable
         _levelFinisher.MissionLevelDidFinish += LevelFinisher_MissionLevelDidFinish;
     }
 
-    private void LevelFinisher_StandardLevelDidFinish(StandardLevelScenesTransitionSetupDataSO sceneSetup, LevelCompletionResults lcr)
+    private void LevelFinisher_StandardLevelDidFinish(StandardLevelScenesTransitionSetupData sceneSetup, LevelCompletionResults lcr)
     {
         Save(sceneSetup.beatmapKey, lcr);
     }
 
-    private void LevelFinisher_MissionLevelDidFinish(MissionLevelScenesTransitionSetupDataSO sceneSetup, MissionCompletionResults mlcr)
+    private void LevelFinisher_MissionLevelDidFinish(MissionLevelScenesTransitionSetupData sceneSetup, MissionCompletionResults mlcr)
     {
         // Idk how to fix
         // Save(sceneSetup.difficultyBeatmap, mlcr.levelCompletionResults);
@@ -47,7 +47,7 @@ internal class DeltaFrameSavingManager : IInitializable, IDisposable
             return;
 
         // Pull necessary info to generate the contract and metadata
-        var mode = beatmap.beatmapCharacteristic.serializedName;
+        var mode = beatmap.characteristic.SerializedName();
         var level = beatmap.levelId.Replace("custom_level_", string.Empty);
         var score = results.multipliedScore;
         var diff = beatmap.difficulty;
